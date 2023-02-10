@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pedidos SYSTEM "pedidos.dtd">
+<pedidos>
+    <sucursal codigo="A0000001">
+        <direccion>Calle Ecuador Nº7</direccion>
+        <nombreTrabajador>Eustaquio Lara Lozano</nombreTrabajador>
+        <fechaPedido>2023-02-10</fechaPedido>
+        <observaciones>urgente</observaciones>
+        <articulo codigo="AAA-001">
+            <numUnidades>1</numUnidades>
+            <precioUnidad>32</precioUnidad>
+            <observaciones>Muy pesado</observaciones>
+            <plazoRevision>15</plazoRevision>
+        </articulo>
+    </sucursal>
+</pedidos>

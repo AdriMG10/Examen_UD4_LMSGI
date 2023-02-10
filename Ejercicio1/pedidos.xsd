@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    version="0.1" xml:lang="es">
+        <xs:element name="pedidos" type="pedidosDatos"/>
+            <xs:complexType name="pedidosDatos">
+                <xs:sequence>
+                    <xs:element name="sucursal" type="sucursalDatos" minOccurs="1" maxOccurs="unbounded"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="sucursalDatos">
+                <xs:sequence>
+                    <xs:element name="direccion" type="xs:string" minOccurs="1"/>
+                    <xs:element name="nombreTrabajador" type="xs:string"/>
+                    <xs:element name="fechaPedido" type="xs:date"/>
+                    <xs:element name="observaciones">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:enumeration value="urgente"></xs:enumeration>
+                                <xs:enumeration value="incompleto"></xs:enumeration>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="articulo" type="articuloDatos" minOccurs="1" maxOccurs="unbounded"/>
+                </xs:sequence>
+                <xs:attribute name="codigo" type="codigoTipo" use="required"/>
+            </xs:complexType>
+            <xs:simpleType name="codigoTipo">
+	            <xs:restriction base="xs:string"> 
+		            <xs:pattern value="[A-Za-z]([0-9]){7}"/>
+	            </xs:restriction>
+            </xs:simpleType>
+            <xs:complexType name="articuloDatos">
+                <xs:sequence>
+                    <xs:element name="numUnidades">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:integer">
+                                <xs:minInclusive value="1"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="precioUnidad">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:decimal">
+                                <xs:minInclusive value="1"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="observaciones" type="xs:string"/>
+                    <xs:element name="plazoRevision">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:integer">
+                                <xs:minInclusive value="1"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                </xs:sequence>
+                <xs:attribute name="codigo" type="codigoArticulo" use="required"/>
+            </xs:complexType>
+            <xs:simpleType name="codigoArticulo">
+	            <xs:restriction base="xs:string"> 
+		            <xs:pattern value="[A-Z]{3}-[0-9]{3}"/>
+	            </xs:restriction>
+            </xs:simpleType>
+</xs:schema>
